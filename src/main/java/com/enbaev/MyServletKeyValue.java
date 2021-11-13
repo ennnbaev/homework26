@@ -12,7 +12,7 @@ public class MyServletKeyValue extends HttpServlet {
         Map<String, String[]> allRequest = request.getParameterMap();
         allRequest.forEach((keys, values) -> {
             try {
-                response.getWriter().println(keys + " = " + values[0]);
+                response.getWriter().println("Key "+keys + " Value " + values[0]);
             } catch (IOException e) {
                 e.printStackTrace();
             }
