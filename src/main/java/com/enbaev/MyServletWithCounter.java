@@ -9,15 +9,19 @@ public class MyServletWithCounter extends HttpServlet {
     int counterGet;
     int counterPost;
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().println("Count of GET : " + counterGet++);
+    static void counter(HttpServletResponse response, int counterGet, int counterPost) throws IOException {
+        response.getWriter().println("Count of GET : " + counterGet);
         response.getWriter().println("Count of POST : " + counterPost);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().println("Count of GET : " + counterGet);
-        response.getWriter().println("Count of POST : " + counterPost++);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        counter(response, counterGet++, counterPost);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        counter(response, counterGet, counterPost++);
+    }
+
 }
